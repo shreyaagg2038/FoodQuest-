@@ -30,11 +30,12 @@
 }
 
 .res-container{
-    display: flex;
+  display: flex;
+  flex-wrap: wrap;      /* ✅ allows cards to go to next row */
 }
 .res-card{
-    height: 300px;
     width: 200px;
+    height: 300px;
     padding: 30px;
     margin: 20px;
 }

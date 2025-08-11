@@ -5,7 +5,6 @@ const RestaurantCard = (props) => {
     const {info} = resData;
     const { name, cuisines, avgRating, deliveryTime,cloudinaryImageId } = info;
     const url = `${CDN_URL}${cloudinaryImageId}.JPG`
-    console.log(url);
 
     return (
         <div className="res-card" style={{ backgroundColor: "bisque" }}>

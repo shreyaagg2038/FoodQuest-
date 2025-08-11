@@ -1,0 +1,22 @@
+{
+  "name": "foodquest",
+  "version": "1.0.0",
+  "description": "A Food Ordering App",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "react",
+    "frontend",
+    "food"
+  ],
+  "author": "Shreya Aggarwal",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}

@@ -3,6 +3,8 @@ import {useState,useEffect} from 'react';
 import { resList } from "../utils/mockData";
 const Body = () => {
     let [listOfRestaurants,setListofRestaurants] = useState(resList);
+     let [filteredRestaurant,setfilteredRestaurant] = useState(resList);
+    const [searchText,setSearchText] = useState("");
 
     useEffect(()=>{
         fetchData();
@@ -11,22 +13,32 @@ const Body = () => {
     const fetchData = async()=>{
         const data = await fetch("");
         const json = await data.json();
-        
+
+    }
+
+    const handleFilter=()=>{
+        filteredRestaurant = listOfRestaurants.filter((res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase()));
+        setfilteredRestaurant(filteredRestaurant);
     }
 
     
     return (
         <div className="app-body">
+            <div className="filter">
+                <div className="filter-container">
+                    <input type="text" placeholder="Search for restaurants" value={searchText} onChange={(e)=>setSearchText(e.target.value)}></input>
+                    <button onClick={handleFilter} style={{margin:"10px"}}>Search</button>
+                </div>
             <button className="search-container" onClick={() => {
-                listOfRestaurants = listOfRestaurants.filter((res)=> res.info.avgRating>4.4)
-                setListofRestaurants(listOfRestaurants);
+                filteredRestaurant = listOfRestaurants.filter((res)=> res.info.avgRating>4.4)
+                setfilteredRestaurant(filteredRestaurant);
             }
-            }>
-                Top Rated Restaurants
+            }>Top Rated Restaurants
             </button>
+            </div>
             <div className="res-container">
                 {
-                    listOfRestaurants.map((restaurant) => {
+                    filteredRestaurant.map((restaurant) => {
                         return <RestaurantCard key={restaurant.info.id} resData={restaurant} />
                     })
                 }

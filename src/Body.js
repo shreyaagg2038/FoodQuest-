@@ -1,9 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
 import {useState,useEffect} from 'react';
-import { resList } from "../utils/mockData";
 const Body = () => {
-    let [listOfRestaurants,setListofRestaurants] = useState(resList);
-     let [filteredRestaurant,setfilteredRestaurant] = useState(resList);
+    let [listOfRestaurants,setListofRestaurants] = useState([]);
+     let [filteredRestaurant,setfilteredRestaurant] = useState([]);
     const [searchText,setSearchText] = useState("");
 
     useEffect(()=>{
@@ -11,8 +10,11 @@ const Body = () => {
     },[]);
 
     const fetchData = async()=>{
-        const data = await fetch("");
+        const data = await fetch("https://pastebin.com/raw/0QcdEDBL");
         const json = await data.json();
+        console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListofRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
     }
 

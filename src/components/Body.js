@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import RestaurantCard from "./RestaurantCard";
 import {useState,useEffect} from 'react';
 const Body = () => {
@@ -12,9 +13,9 @@ const Body = () => {
 
     const fetchData = async()=>{
         try{
-        const data = await fetch("https://pastebin.com/raw/0QcdEDBL");
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
-        //console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        //console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setListofRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
@@ -47,7 +48,7 @@ const Body = () => {
             <div className="res-container">
                 {
                     filteredRestaurant.map((restaurant) => {
-                        return <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+                        return <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}><RestaurantCard  resData={restaurant} /></Link>
                     })
                 }
             </div>

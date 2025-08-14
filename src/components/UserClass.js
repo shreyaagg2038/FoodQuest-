@@ -14,6 +14,8 @@ class UserClass extends React.Component{
 
     componentDidMount(){
         console.log("Child Did Mount");
+        //API calls here ?? But Why 
+        // because we want to give better user experience -> loads->renders->apicall->re-renders
     }
 
     render(){

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A Food Ordering App",
   "scripts": {
-    "start":"parcel index.html",
-    "build" :"parcel build index.html",
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "keywords": [
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.8.0"
   }
 }

@@ -6,15 +6,21 @@ const Body = () => {
     const [searchText,setSearchText] = useState("");
 
     useEffect(()=>{
-        fetchData();
+       fetchData();
+        console.log("use Effect called");
     },[]);
 
     const fetchData = async()=>{
+        try{
         const data = await fetch("https://pastebin.com/raw/0QcdEDBL");
         const json = await data.json();
-        console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        //console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setListofRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        }
+        catch(err){
+            console.log(err);
+        }
 
     }
 

@@ -49,7 +49,7 @@ const RestaurantMenu =()=>{
     
     return (
         <div>
-            <h1>{name}</h1>
+            <h1 className="text-ellipsis">{name}</h1>
             <span>{avgRating}</span>
             <div style={{display:"flex"}}>
             <h1 style={{margin:"10px"}}>Menu</h1>

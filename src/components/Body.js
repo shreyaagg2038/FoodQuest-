@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import RestaurantCard from "./RestaurantCard";
 import {useState,useEffect} from 'react';
+import useOnlineStatus from "../../utils/useOnlineStatus";
 const Body = () => {
     let [listOfRestaurants,setListofRestaurants] = useState([]);
      let [filteredRestaurant,setfilteredRestaurant] = useState([]);
@@ -31,6 +32,14 @@ const Body = () => {
     }
 
     
+    const onlineStatus = useOnlineStatus();
+    if(!onlineStatus){
+        return (
+            <div>
+                <h1>Hey!!! Looks like you are offline. Please check your internet connection !!!!</h1>
+            </div>
+        )
+    }
     return (
         <div className="app-body">
             <div className="filter">

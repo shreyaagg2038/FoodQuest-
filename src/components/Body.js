@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import RestaurantCard from "./RestaurantCard";
 import {useState,useEffect} from 'react';
 import useOnlineStatus from "../../utils/useOnlineStatus";
+import SpaceCosmosLanding from "./SpaceCosmosLanding";
 const Body = () => {
     let [listOfRestaurants,setListofRestaurants] = useState([]);
      let [filteredRestaurant,setfilteredRestaurant] = useState([]);
@@ -14,11 +15,12 @@ const Body = () => {
 
     const fetchData = async()=>{
         try{
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5485315&lng=77.1264849&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
-        //console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setListofRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        console.log(json);
+        //console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListofRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setfilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
         catch(err){
             console.log(err);
@@ -35,10 +37,12 @@ const Body = () => {
     const onlineStatus = useOnlineStatus();
     if(!onlineStatus){
         return (
-            <div>
-                <h1>Hey!!! Looks like you are offline. Please check your internet connection !!!!</h1>
-            </div>
+            <SpaceCosmosLanding />
         )
+    }
+
+    if(!filteredRestaurant){
+        return (<h1>Loading.....</h1>)
     }
     return (
         <div className="app-body">

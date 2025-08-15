@@ -59,3 +59,23 @@
         padding: 10x;
     margin: 20px;
 }
+.online-item {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* space between text and dot */
+  top: 10px;
+}
+
+.online-status-dot {
+  width: 8px;
+  height: 8px;
+  background-color:green;
+  border-radius: 50%; /* makes it circular */
+}
+
+.offline-status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%; /* makes it circular */
+}

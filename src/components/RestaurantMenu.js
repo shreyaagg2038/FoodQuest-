@@ -5,11 +5,15 @@ import useRestaurantMenu from "../../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
-
+    const [activeIndex,setActiveIndex] = useState(null);
     const { resId } = useParams();
 
     const resData = useRestaurantMenu(resId);
     //console.log(resData);
+
+    const handleClick=(index)=>{
+        setActiveIndex(activeIndex===index ? null : index);
+    }
 
 
     if (Object.keys(resData).length === 0) {
@@ -43,8 +47,8 @@ const RestaurantMenu = () => {
                 </div>
             </div>
             <div ><ul className=" text-center">
-                {categories.map((c)=>
-                <li  key = {c.card.card.title}><RestaurantCategory data={c.card.card}/> </li>)}
+                {categories.map((c,index)=>
+                <li  key = {c.card.card.title} onClick={()=>handleClick(index)}><RestaurantCategory data={c.card.card} showItems={index === activeIndex && true}/> </li>)}
             </ul>
             </div>
         </div>

@@ -3,11 +3,14 @@ import RestaurantCard from "./RestaurantCard";
 import {useState,useEffect} from 'react';
 import useOnlineStatus from "../../utils/useOnlineStatus";
 import SpaceCosmosLanding from "./SpaceCosmosLanding";
+import { WithOpenInfoLabel } from "./RestaurantCard";
 
 const Body = () => {
     let [listOfRestaurants,setListofRestaurants] = useState([]);
      let [filteredRestaurant,setfilteredRestaurant] = useState([]);
     const [searchText,setSearchText] = useState("");
+
+    const RestaurantCardOpen = WithOpenInfoLabel(RestaurantCard);
 
     useEffect(()=>{
        fetchData();
@@ -21,6 +24,7 @@ const Body = () => {
         console.log(json);
         //console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setListofRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        console.log(listOfRestaurants);
         setfilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
         catch(err){
@@ -62,7 +66,10 @@ const Body = () => {
             <div className="flex  flex-wrap gap-10">
                 {
                     filteredRestaurant.map((restaurant) => {
-                        return <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}><RestaurantCard  resData={restaurant} /></Link>
+                        return <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}>
+                            {/* <h1 className="text-white">{restaurant.info.isOpen ? "OPEN" : "CLOSED"}</h1> */}
+                            {restaurant.info.isOpen ? (<RestaurantCardOpen  resData={restaurant} />) : (<RestaurantCard resData={restaurant}/>)}
+                            </Link>
                     })
                 }
             </div>

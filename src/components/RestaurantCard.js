@@ -1,5 +1,4 @@
 import { CDN_URL } from "../../utils/constants";
-import {image} from "../../assets/food.jpg"
 
 const RestaurantCard = (props) => {
     const { resData } = props;  
@@ -18,4 +17,14 @@ const RestaurantCard = (props) => {
     )
 }
 
+export const WithOpenInfoLabel =(RestaurantCard)=>{
+    return (
+        (props)=>{
+            return (<div>
+            <label className="text-white m-3 p-3 absolute bg-black border-white">Open</label>
+            <RestaurantCard {...props}/>
+            </div>)
+        }
+    )
+}
 export default RestaurantCard;
